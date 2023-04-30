@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
+use App\Http\Middleware\HelloMiddleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', [HelloController::class, 'index'])->name('hello');
-Route::get('/hello/other', [HelloController::class, 'other']);
+Route::middleware([HelloMiddleware::class])->group(function () {
+    Route::get('/hello', [HelloController::class, 'index']);
+    Route::get('/hello/other', [HelloController::class, 'other']);
+});
 
 Route::get('/hello/{id}', [HelloController::class, 'index'])
     ->where('id', '[0-9]+');
