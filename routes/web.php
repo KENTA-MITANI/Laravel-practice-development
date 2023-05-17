@@ -25,10 +25,12 @@ Route::middleware([HelloMiddleware::class])->group(function () {
     Route::get('/hello/other', [HelloController::class, 'other']);
 });
 
-Route::get('/hello/{id}', [HelloController::class, 'index'])
-    ->where('id', '[0-9]+');
+// Route::get('/hello/{id}', [HelloController::class, 'index'])
+//     ->where('id', '[0-9]+');
 
+Route::namespace('Sample')->group(function () {
     Route::get('/sample', [SampleController::class, 'index']);
     Route::get('/sample/other', [SampleController::class, 'other']);
-Route::namespace('Sample')->group(function () {
 });
+
+Route::get('/hello/{person}', [HelloController::class, 'index']);
