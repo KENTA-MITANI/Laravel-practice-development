@@ -29,7 +29,7 @@ Route::middleware([HelloMiddleware::class])->group(function () {
 //     ->where('id', '[0-9]+');
 
 Route::namespace('Sample')->group(function () {
-    Route::get('/sample', [SampleController::class, 'index']);
+    Route::get('/sample', [SampleController::class, 'index'])->name('sample');
     Route::get('/sample/other', [SampleController::class, 'other']);
 });
 
