@@ -13,4 +13,9 @@
     </ul>
 </body>
 
+<style>
+th { background-color:grey; padding:10px; }
+td { background-color:#eee; padding:10px; }
+</style>
+
 </html>
