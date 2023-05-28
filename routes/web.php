@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Middleware\HelloMiddleware;
 use App\Http\Controllers\Sample\SampleController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,8 @@ Route::get('/', function () {
 
 //
 Route::middleware([HelloMiddleware::class])->group(function () {
-    Route::get('/hello', [HelloController::class, 'index'])->name('hello');
-    Route::get('/hello/{msg}', [HelloController::class, 'other']);
+    Route::get('/hello', [HelloController::class, 'index']);
+    Route::post('/hello', [HelloController::class, 'index']);
     // Route::get('/hello/other', [HelloController::class, 'other']);
 });
 
@@ -33,3 +34,7 @@ Route::namespace('Sample')->group(function () {
 });
 
 Route::get('/hello/{person}', [HelloController::class, 'index']);
+
+// test用
+Route::get('/test', [TestController::class, 'index']);
+Route::post('/test', [TestController::class, 'index']);
