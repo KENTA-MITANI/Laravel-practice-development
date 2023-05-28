@@ -21,20 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//
-Route::middleware([HelloMiddleware::class])->group(function () {
-    Route::get('/hello', [HelloController::class, 'index']);
-    Route::post('/hello', [HelloController::class, 'index']);
-    // Route::get('/hello/other', [HelloController::class, 'other']);
-});
-
 Route::namespace('Sample')->group(function () {
     Route::get('/sample', [SampleController::class, 'index'])->name('sample');
     Route::get('/sample/other', [SampleController::class, 'other']);
 });
 
-Route::get('/hello/{person}', [HelloController::class, 'index']);
-
 // test用
 Route::get('/test', [TestController::class, 'index']);
 Route::post('/test', [TestController::class, 'index']);
+
+Route::get('/hello/other', [HelloController::class, 'other']);
+Route::get('/hello', [HelloController::class, 'index'])->name('hello');
